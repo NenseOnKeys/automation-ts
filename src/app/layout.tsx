@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../../components/navbar";
+import Head from 'next/head'; // import the Head component
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" id="viewportMeta" />
+      </Head>
       <body>
         <Navbar />
         <div>{children}</div>
