@@ -132,16 +132,30 @@ const Home: React.FC = () => {
   }
 
   const exportDivAsImage = () => {
-    const div = document.querySelector('.parent');
-    if (div) {
-      html2canvas(div as HTMLElement, {scale: 2, useCORS: true}).then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const link = document.createElement('a');
-        link.href = imgData;
-        link.download = 'output.png';
-        link.click();
-      });
-    }
+    const parentDivs = document.querySelectorAll('.parent');
+let delay = 0; // delay in milliseconds
+
+parentDivs.forEach((div) => {
+  setTimeout(() => {
+    html2canvas(div as HTMLElement, { scale: 2, useCORS: true }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = imgData;
+      link.download = 'output.png';
+      link.click();
+    });
+  }, delay);
+  delay += 2000; // increment delay for each div
+});
+    // if (div) {
+    //   html2canvas(div as HTMLElement, {scale: 2, useCORS: true}).then((canvas) => {
+    //     const imgData = canvas.toDataURL('image/png');
+    //     const link = document.createElement('a');
+    //     link.href = imgData;
+    //     link.download = 'output.png';
+    //     link.click();
+    //   });
+    // }
   }
   
   
@@ -277,6 +291,24 @@ const Home: React.FC = () => {
           />
           <div className="absolute light" style={{aspectRatio: ((originalDimensions?.width || 0) /2) / (originalDimensions?.height || 0) }}>
             <Tweet id={tweetId}/>
+
+          </div>
+        </div>
+        
+      )}
+
+{leftHalf && (
+        <div className="parent">
+          <NextImage
+            src={leftHalf}
+            width={ (originalDimensions?.width || 0) / 2 || 150}
+            height={originalDimensions?.height || 300}
+            alt="Right half"
+            objectFit="contain"
+            className="image"
+          />
+          <div className="absolute light" style={{aspectRatio: ((originalDimensions?.width || 0) /2) / (originalDimensions?.height || 0) }}>
+           
 
           </div>
         </div>
