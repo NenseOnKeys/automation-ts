@@ -133,7 +133,7 @@ const Home: React.FC = () => {
 
   const exportDivAsImage = () => {
     const parentDivs = document.querySelectorAll('.parent');
-let delay = 0; // delay in milliseconds
+let delay = 1000; // delay in milliseconds
 
 parentDivs.forEach((div) => {
   setTimeout(() => {
@@ -145,7 +145,7 @@ parentDivs.forEach((div) => {
       link.click();
     });
   }, delay);
-  delay += 2000; // increment delay for each div
+  delay += 1000; // increment delay for each div
 });
     // if (div) {
     //   html2canvas(div as HTMLElement, {scale: 2, useCORS: true}).then((canvas) => {
